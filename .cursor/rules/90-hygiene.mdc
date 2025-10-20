@@ -1,0 +1,25 @@
+Higiena projektu
+
+Porządek i rozmiary
+- Nie tworzymy dużych plików: docelowo ≤400 linii. Dzielimy na moduły.
+- Usuwamy martwy kod i nieużywane zależności na bieżąco.
+- Czytelność ponad „spryt”: preferuj prosty kod z testami.
+
+Refaktor
+- Regularny refaktor przy rozroście modułów lub zmianie zakresu odpowiedzialności.
+- Przed refaktorem dopisz testy pokrywające zachowanie.
+
+Bezpieczeństwo sprzętowe
+- Bezpieczniki 100 mA szeregowo na wyjścia DAC/driver.
+- Wspólna masa GND dla RPi i analogów. Ekran przewodów do GND przy RPi.
+- Testy z „override 0/50/100%” PRZED podłączeniem do realnych wskaźników.
+
+Diagnostyka
+- Logowanie poziomów: info dla zmian kanałów, warn dla wartości poza zakresem, error dla I²C.
+- Skrypty diagnostyczne w `scripts/` do szybkiej kalibracji i smoke‑testów.
+
+
+
+
+
+

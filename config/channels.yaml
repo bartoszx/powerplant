@@ -1,0 +1,32 @@
+channels:
+  daily_home:
+    entity: sensor.home_energy_daily
+    full_scale: 18.0
+    display_scale: 20.0
+    meter_type: current_25uA
+    ema_alpha: 0.10
+    gain: 1.000
+    offset: 0.000
+  pv_production:
+    entity: sensor.inverter_input_power
+    full_scale: 12000
+    meter_type: voltage_0_5v
+    ema_alpha: 0.20
+  battery_soc:
+    entity: sensor.battery_soc
+    full_scale: 100
+    meter_type: voltage_0_5v
+    ema_alpha: 0.05
+  house_load:
+    entity: sensor.house_power
+    full_scale: 6000
+    meter_type: voltage_0_5v
+    ema_alpha: 0.20
+  grid_buy:
+    entity: sensor.grid_import_power
+    full_scale: 3000
+    clamp_min: 0
+    meter_type: voltage_0_5v
+    ema_alpha: 0.20
+
+

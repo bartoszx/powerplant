@@ -1,0 +1,113 @@
+Wskaźniki analogowe – specyfikacja modułu
+
+Cel
+- Retro‑konsola z igłowymi wskaźnikami pokazującymi bieżące parametry energetyczne.
+- Start: obsługa mikroamperomierzy/0–5 V z RPi + DAC. Pierwszy moduł: dzienny licznik energii (kWh) – symulacja 10 kWh w skali do 18 kWh.
+
+Kanały i skale (FS)
+- PV production: 0–12 kW (FS).
+- Daily home consumption: 0–20 kWh (FS). Dla startu: symulacja 10 kWh przy skali 0–18 kWh.
+- Battery SoC: 0–100 % (FS).
+- House load: 0–6 kW (FS).
+- Grid buy: 0–3 kW (FS), eksport zerowany (clamp do 0).
+
+Sprzęt (prosty i stabilny)
+- RPi 3B+/4, zasilacz 5 V ≥ 3 A.
+- DAC: MCP4728 (4× 0–5 V I²C) + MCP4725 (1× 0–5 V) – razem 5 wyjść.
+- Drivery prądowe dla ustrojów 100–1000 µA: 5× LM358 (źródła prądowe) lub gotowe „panel meter driver 0–1 mA”.
+- Jeśli wskaźniki „0–5 V” – bez driverów; bezpośrednio z DAC na wskaźnik.
+- Potencjometry trymujące 10 k (1/kanał) – kalibracja FSD.
+- Bezpieczniki 100 mA szeregowo na każdym wyjściu.
+- Zasilanie analogów: 5 V z RPi (lub osobne 5 V, wspólna masa GND).
+- (opcjonalnie) LED sygnałowe „PV/GRID/LOAD OK” – GPIO + 330 Ω.
+
+Okablowanie (skrót)
+- RPi ↔ MCP4728/4725: I²C (SDA, SCL, 3V3 logic, GND). MCP zasilany z 5 V.
+- Każde wyjście DAC → trymer 10 k (dzielnik/offset) → driver prądowy → wskaźnik → GND.
+- Ekranowane przewody do wskaźników; ekran do GND przy RPi.
+
+Źródła danych (Home Assistant)
+- MQTT (najprościej): włącz mqtt_statestream lub publikuj 5 sensorów do topiców. RPi subskrybuje, przesuwa igły na żywo.
+- WebSocket API HA: po tokenie subskrypcja `state_changed` dla encji.
+- Mapowanie encji → kanały (przykład):
+  - PV: `sensor.inverter_input_power` (lub suma PV1+PV2).
+  - Daily home: `sensor.home_energy_daily` (kWh, „today”/utility_meter).
+  - Battery SoC: `sensor.battery_soc` (%).
+  - House load: `sensor.inverter_load_power` lub `sensor.house_power`.
+  - Grid buy: `sensor.grid_import_power` (ujemne = eksport → clamp do 0).
+
+Przeliczenia i ograniczenia
+- Wskaźnik napięciowy 0–5 V:
+  - `needle_ratio = clamp(value / full_scale, 0.0, 1.0)`
+  - `dac_voltage = needle_ratio * 5.0`
+- Wskaźnik prądowy (np. 1 mA FSD):
+  - `meter_current = needle_ratio * I_FSD`
+  - Driver prądowy ustawia prąd; trymer kalibruje FSD.
+- Grid: `value = max(0, grid_power_w)` – eksport zerowany.
+
+Wygładzanie (EMA)
+- `y = α*x + (1-α)*y_prev`
+- α: PV/Load/Grid 0.2; SoC 0.05; Daily 0.1. Konfigurowalne w `config/smoothing.yaml`.
+
+Kalibracja (3 min/igła)
+1. Wymuś 100% (override) w sofcie.
+2. Trymerem ustaw koniec skali (FSD) dokładnie.
+3. Wymuś 50% i sprawdź liniowość; wprowadź gain/offset per‑kanał, jeśli trzeba.
+4. Wyłącz override.
+
+Symulacja – pierwszy moduł (kWh)
+- Podłącz wskaźnik do RPi i zasymuluj przebieg 0 → 10 kWh przy skali 0 → 18 kWh.
+- Sposób: moduł `app/sim/` generuje wartości kWh; `analog` przelicza na 0–5 V lub 0–1 mA.
+- Kryteria akceptacji: płynny ruch, brak drżenia (EMA), 10 kWh ≈ 55–60% skali, 18 kWh ≈ FSD.
+- Skrypty pomocnicze: `scripts/override-needle --channel=daily --percent=100`, `--percent=50`, `--off`.
+
+Konfiguracja (YAML – przykład)
+```
+channels:
+  daily_home:
+    entity: sensor.home_energy_daily
+    full_scale: 18.0            # kWh
+    display_scale: 20.0         # opis na tarczy (opcjonalnie)
+    meter_type: current_1mA     # lub voltage_0_5v
+    ema_alpha: 0.10
+    gain: 1.000
+    offset: 0.000
+  pv_production:
+    entity: sensor.inverter_input_power
+    full_scale: 12000           # W
+    meter_type: voltage_0_5v
+    ema_alpha: 0.20
+  battery_soc:
+    entity: sensor.battery_soc
+    full_scale: 100             # %
+    meter_type: voltage_0_5v
+    ema_alpha: 0.05
+  house_load:
+    entity: sensor.house_power
+    full_scale: 6000            # W
+    meter_type: voltage_0_5v
+    ema_alpha: 0.20
+  grid_buy:
+    entity: sensor.grid_import_power
+    full_scale: 3000            # W
+    clamp_min: 0                # eksport → 0
+    meter_type: voltage_0_5v
+    ema_alpha: 0.20
+
+hardware:
+  i2c_bus: 1
+  mcp4728_address: 0x60
+  mcp4725_address: 0x62
+  fuse_mA: 100
+  common_gnd: true
+```
+
+Interfejs kanału (kontrakt)
+- `init(config)` – waliduje parametry, ustawia DAC na 0.
+- `update(value)` – stosuje clamp, EMA, gain/offset; wylicza docelowe V/A.
+- `output()` – publikuje wynik do DAC/driver.
+
+Bezpieczeństwo i diagnostyka
+- Bezpieczniki 100 mA na wyjściach; wspólna masa; testy override przed realnym obciążeniem.
+- Logi: info – zmiany kanałów; warn – wartości poza zakresem; error – błędy I²C.
+
