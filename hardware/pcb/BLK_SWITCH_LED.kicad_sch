@@ -406,264 +406,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Connector_Generic:Conn_02x03_Odd_Even"
-			(pin_names
-				(offset 1.016)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "J"
-				(at 1.27 5.08 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "Conn_02x03_Odd_Even"
-				(at 1.27 -5.08 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Generic connector, double row, 02x03, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "connector"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "Connector*:*_2x??_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "Conn_02x03_Odd_Even_1_1"
-				(rectangle
-					(start -1.27 3.81)
-					(end 3.81 -3.81)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(rectangle
-					(start -1.27 2.667)
-					(end 0 2.413)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start -1.27 0.127)
-					(end 0 -0.127)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start -1.27 -2.413)
-					(end 0 -2.667)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start 3.81 2.667)
-					(end 2.54 2.413)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start 3.81 0.127)
-					(end 2.54 -0.127)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start 3.81 -2.413)
-					(end 2.54 -2.667)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin passive line
-					(at -5.08 2.54 0)
-					(length 3.81)
-					(name "Pin_1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -5.08 0 0)
-					(length 3.81)
-					(name "Pin_3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -5.08 -2.54 0)
-					(length 3.81)
-					(name "Pin_5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 7.62 2.54 180)
-					(length 3.81)
-					(name "Pin_2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 7.62 0 180)
-					(length 3.81)
-					(name "Pin_4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 7.62 -2.54 180)
-					(length 3.81)
-					(name "Pin_6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Connector_Generic:Conn_02x05_Odd_Even"
 			(pin_names
 				(offset 1.016)
@@ -1038,18 +780,19 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Device:C_Polarized"
+		(symbol "Device:C_Small"
 			(pin_numbers
 				(hide yes)
 			)
 			(pin_names
 				(offset 0.254)
+				(hide yes)
 			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
 			(property "Reference" "C"
-				(at 0.635 2.54 0)
+				(at 0.254 1.778 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -1057,8 +800,8 @@
 					(justify left)
 				)
 			)
-			(property "Value" "C_Polarized"
-				(at 0.635 -2.54 0)
+			(property "Value" "C_Small"
+				(at 0.254 -2.032 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -1067,7 +810,7 @@
 				)
 			)
 			(property "Footprint" ""
-				(at 0.9652 -3.81 0)
+				(at 0 0 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -1084,7 +827,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "Polarized capacitor"
+			(property "Description" "Unpolarized capacitor, small symbol"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1093,7 +836,7 @@
 					(hide yes)
 				)
 			)
-			(property "ki_keywords" "cap capacitor"
+			(property "ki_keywords" "capacitor cap"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1102,7 +845,7 @@
 					(hide yes)
 				)
 			)
-			(property "ki_fp_filters" "CP_*"
+			(property "ki_fp_filters" "C_*"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1111,12 +854,13 @@
 					(hide yes)
 				)
 			)
-			(symbol "C_Polarized_0_1"
-				(rectangle
-					(start -2.286 0.508)
-					(end 2.286 1.016)
+			(symbol "C_Small_0_1"
+				(polyline
+					(pts
+						(xy -1.524 0.508) (xy 1.524 0.508)
+					)
 					(stroke
-						(width 0)
+						(width 0.3048)
 						(type default)
 					)
 					(fill
@@ -1125,44 +869,21 @@
 				)
 				(polyline
 					(pts
-						(xy -1.778 2.286) (xy -0.762 2.286)
+						(xy -1.524 -0.508) (xy 1.524 -0.508)
 					)
 					(stroke
-						(width 0)
+						(width 0.3302)
 						(type default)
 					)
 					(fill
 						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.27 2.794) (xy -1.27 1.778)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start 2.286 -0.508)
-					(end -2.286 -1.016)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
 					)
 				)
 			)
-			(symbol "C_Polarized_1_1"
+			(symbol "C_Small_1_1"
 				(pin passive line
-					(at 0 3.81 270)
-					(length 2.794)
+					(at 0 2.54 270)
+					(length 2.032)
 					(name "~"
 						(effects
 							(font
@@ -1179,8 +900,8 @@
 					)
 				)
 				(pin passive line
-					(at 0 -3.81 90)
-					(length 2.794)
+					(at 0 -2.54 90)
+					(length 2.032)
 					(name "~"
 						(effects
 							(font
@@ -2275,12 +1996,6 @@
 		(uuid "0262deed-987d-45bc-bd77-a31ea3130c18")
 	)
 	(junction
-		(at 257.81 147.32)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "0da3c2d4-73c5-4d41-a999-fa9506b27692")
-	)
-	(junction
 		(at 334.01 133.35)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2385,6 +2100,10 @@
 		(uuid "3e50997b-07d0-4000-a3a6-7dfca85185bc")
 	)
 	(no_connect
+		(at 133.35 66.04)
+		(uuid "3e54d75e-85b9-41f7-8315-641e83326d85")
+	)
+	(no_connect
 		(at 194.31 39.37)
 		(uuid "61e1f709-ea90-4721-a01f-d42361e4dcc8")
 	)
@@ -2409,6 +2128,10 @@
 		(uuid "a73ccbfe-6cbb-40dd-8996-9316cb359ab3")
 	)
 	(no_connect
+		(at 133.35 71.12)
+		(uuid "b6604812-16b6-4408-88ba-996c631d21d8")
+	)
+	(no_connect
 		(at 173.99 49.53)
 		(uuid "b7d4487d-079a-4e2b-adf7-0aa3a7bccad6")
 	)
@@ -2427,6 +2150,10 @@
 	(no_connect
 		(at 194.31 46.99)
 		(uuid "f5f04048-154b-4a34-afc5-c5ba35aa0381")
+	)
+	(no_connect
+		(at 146.05 71.12)
+		(uuid "f994700c-b075-4d81-a85b-97cf19bb521e")
 	)
 	(wire
 		(pts
@@ -2520,16 +2247,6 @@
 	)
 	(wire
 		(pts
-			(xy 184.15 147.32) (xy 257.81 147.32)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1ddce5a0-adb3-41aa-ab21-6ca4e757c808")
-	)
-	(wire
-		(pts
 			(xy 297.18 133.35) (xy 334.01 133.35)
 		)
 		(stroke
@@ -2547,6 +2264,16 @@
 			(type default)
 		)
 		(uuid "2a1334a8-31fd-4a87-923a-f227c8b237a2")
+	)
+	(wire
+		(pts
+			(xy 241.3 74.93) (xy 241.3 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "33a258b4-e598-4834-9f8d-6b7cd65dd278")
 	)
 	(wire
 		(pts
@@ -2620,16 +2347,6 @@
 	)
 	(wire
 		(pts
-			(xy 241.3 68.58) (xy 241.3 57.15)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4e2b8969-b064-430d-a8d6-1dfdb73a1d5c")
-	)
-	(wire
-		(pts
 			(xy 222.25 120.65) (xy 223.52 120.65)
 		)
 		(stroke
@@ -2687,6 +2404,16 @@
 			(type default)
 		)
 		(uuid "69d59765-b30a-4f80-a0cc-138105e22de8")
+	)
+	(wire
+		(pts
+			(xy 241.3 57.15) (xy 241.3 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6a5f7747-3148-4fc1-b1ba-0ac243f3e278")
 	)
 	(wire
 		(pts
@@ -2787,16 +2514,6 @@
 			(type default)
 		)
 		(uuid "967655d8-bb7c-47d5-8652-8722fab4b380")
-	)
-	(wire
-		(pts
-			(xy 241.3 76.2) (xy 241.3 86.36)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ac0e185e-a825-4479-9203-57c47fb12e95")
 	)
 	(wire
 		(pts
@@ -2970,6 +2687,16 @@
 	)
 	(wire
 		(pts
+			(xy 146.05 63.5) (xy 146.05 66.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "faebe5ab-1b72-456b-8048-d2193ab1fe24")
+	)
+	(wire
+		(pts
 			(xy 146.05 66.04) (xy 146.05 68.58)
 		)
 		(stroke
@@ -2988,15 +2715,15 @@
 		)
 		(uuid "ff54073e-1b00-49cd-bb2c-d8e13226ba69")
 	)
-	(label "LED_INFO_BIO_12V"
-		(at 133.35 63.5 180)
+	(label "LED_INFO_REC_12V"
+		(at 146.05 60.96 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify left bottom)
 		)
-		(uuid "10c95dbf-c579-46c0-b22a-90dc40927e7f")
+		(uuid "0ab773ba-0fe3-489b-8cdb-9b8196689fcd")
 	)
 	(label "LED_TEMP_DATA_5V"
 		(at 222.25 125.73 180)
@@ -3028,16 +2755,6 @@
 		)
 		(uuid "34d9aa34-7f98-47fd-80a4-4e301c16f024")
 	)
-	(label "LED_INFO_REC_12V"
-		(at 146.05 63.5 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "504ff5bd-27a8-49ca-ae9c-92398f446843")
-	)
 	(label "GND"
 		(at 238.76 118.11 0)
 		(effects
@@ -3058,15 +2775,15 @@
 		)
 		(uuid "58da881d-262e-476f-8e81-dc9e29496b5f")
 	)
-	(label "LED_INFO_OPEN_12V"
-		(at 133.35 66.04 180)
+	(label "LED_INFO_BIO_12V"
+		(at 133.35 60.96 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify right bottom)
 		)
-		(uuid "70fa836d-4794-4b97-af17-7fb0d343f641")
+		(uuid "7370a24e-9b0a-4eb8-8e74-994188020099")
 	)
 	(label "LED_INFO_OPEN_12V"
 		(at 196.85 36.83 0)
@@ -3117,6 +2834,16 @@
 			(justify left bottom)
 		)
 		(uuid "d4851507-eaf2-4487-a608-6913ee1968a1")
+	)
+	(label "LED_INFO_OPEN_12V"
+		(at 133.35 63.5 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "e1a34011-3c72-4801-add9-1c44768546a6")
 	)
 	(label "LED_INFO_BIO_12V"
 		(at 196.85 31.75 0)
@@ -3691,7 +3418,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C_Polarized")
+		(lib_id "Device:C_Small")
 		(at 241.3 72.39 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -3701,7 +3428,7 @@
 		(fields_autoplaced yes)
 		(uuid "3ff09107-d8dc-4062-904c-f1e2ef192865")
 		(property "Reference" "C51"
-			(at 245.11 70.2309 0)
+			(at 243.84 71.1262 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3710,7 +3437,7 @@
 			)
 		)
 		(property "Value" "0.1 µF"
-			(at 245.11 72.7709 0)
+			(at 243.84 73.6662 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3719,7 +3446,7 @@
 			)
 		)
 		(property "Footprint" "C_0603_1608Metric"
-			(at 242.2652 76.2 0)
+			(at 241.3 72.39 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3736,7 +3463,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Polarized capacitor"
+		(property "Description" "Unpolarized capacitor, small symbol"
 			(at 241.3 72.39 0)
 			(effects
 				(font
@@ -3889,7 +3616,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic:Conn_02x03_Odd_Even")
+		(lib_id "Connector_Generic:Conn_02x05_Odd_Even")
 		(at 138.43 66.04 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -3899,6 +3626,14 @@
 		(fields_autoplaced yes)
 		(uuid "49c86f58-66ae-4af3-99ef-e582a8cc4825")
 		(property "Reference" "J15"
+			(at 139.7 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "IDC-10_ZONE_INFO_12V"
 			(at 139.7 57.15 0)
 			(effects
 				(font
@@ -3906,15 +3641,7 @@
 				)
 			)
 		)
-		(property "Value" "IDC-6_ZONE_INFO_12V"
-			(at 139.7 59.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Connector_IDC:IDC-Header_2x03_P2.54mm_Vertical"
+		(property "Footprint" "Connector_IDC:IDC-Header_2x05_P2.54mm_Vertical"
 			(at 138.43 66.04 0)
 			(effects
 				(font
@@ -3932,7 +3659,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Generic connector, double row, 02x03, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)"
+		(property "Description" "Generic connector, double row, 02x05, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)"
 			(at 138.43 66.04 0)
 			(effects
 				(font
@@ -3958,6 +3685,18 @@
 		)
 		(pin "6"
 			(uuid "bef336a6-5fa5-41cb-9656-a47e8f25ac4e")
+		)
+		(pin "9"
+			(uuid "9e782388-09c3-458d-b87c-285f59fc19c5")
+		)
+		(pin "8"
+			(uuid "cef07fb3-7999-4cc4-b27d-6edb011dad6f")
+		)
+		(pin "10"
+			(uuid "b2cc39c4-46f8-42bb-a14d-576bdb73f9ec")
+		)
+		(pin "7"
+			(uuid "8df2e5d4-8e82-4db2-8589-68ae86c59319")
 		)
 		(instances
 			(project ""

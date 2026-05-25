@@ -3694,107 +3694,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "power:PWR_FLAG"
-			(power)
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "#FLG"
-				(at 0 1.905 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Value" "PWR_FLAG"
-				(at 0 3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Special symbol for telling ERC where power comes from"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "flag power"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "PWR_FLAG_0_0"
-				(pin power_out line
-					(at 0 0 90)
-					(length 0)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(symbol "PWR_FLAG_0_1"
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 1.27) (xy -1.016 1.905) (xy 0 2.54) (xy 1.016 1.905) (xy 0 1.27)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 	)
 	(text "BLK_METER_LED - Opis funkcjonalny\n==================================\nSekcja: Wskaźniki analogowe, paski LED i przyciski kontrolne\nUkłady główne: MCP23017 (U9), 2× ULN2803A (U5, U8), 2× 74AHCT125 (U6, U7)\nNapięcia zasilania: 3.3V (logika), 5V (LED), 12V (lampki)\nFiltracja: C23, C25, C26 = 0.1 µF, C24, C30 = 100 µF\nFizyczne połączenie: IDC-34 METER_LED\n\n--- Mierniki analogowe (MTR1-MTR5) ---\nKażdy miernik ma dwa niezależne kanały sterowania:\nOUT_Mx_BL   → sterowanie podświetleniem (przez ULN2803A)\nOUT_Mx_URAL → sterowanie wskaźnikiem (prąd cewki miernika)\nDodatkowo dla każdego miernika dostępna jest linia danych LED (MTRx_DATA),\nbuforowana do poziomu 5V przez układy 74AHCT125 i rezystory 68Ω (R37-R41).\n\nRezystory R37-R41 ograniczają prądy impulsowe i dopasowują impedancję dla taśm WS2812/SK6805.\n\n--- Bufory poziomów logicznych ---\nU6, U7 (74AHCT125) - translacja 3.3V → 5V dla pasków LED:\nGPIO_LED1 → MTR1_DATA\nGPIO_LED2 → MTR2_DATA\nGPIO_LED3 → MTR3_DATA\nGPIO_LED4 → MTR4_DATA\nGPIO_LED5 → MTR5_DATA\nWejścia OE podłączone do GND - bufory zawsze aktywne.\nNieaktywne kanały mają wejścia zwarte do GND (brak stanów pływających).\n\n--- Przyciski z kontrolkami 12V ---\nKażdy przycisk ma dwa sygnały:\nBTN_*_SIG  → wejście logiczne z MCP23017 (informacja o wciśnięciu)\nOUT_*_LED  → wyjście ULN2803A (sterowanie kontrolką 12V)\nPrzyciski:\nBTN_GATE_SIG / OUT_GATE_LED\nBTN_GARAGE_SIG / OUT_GARAGE_LED\nBTN_FENCE_SIG / OUT_FENCE_LED\nBTN_DOOR_SIG / OUT_DOOR_LED\nKażdy LED przycisku jest zasilany z +12V i sterowany otwartym kolektorem ULN2803A.\n\n--- Sterowanie wskaźnikami ---\nU5 i U8 (ULN2803A) sterują podświetleniem (BL) i prądami wskaźników (URAL).\nSygnały sterujące pochodzą z MCP23017 (U9) przez linie CTRL_Mx_BL i CTRL_Mx_URAL.\nULN2803A pracują w konfiguracji open-collector, zasilanie wspólne GNDPWR.\nCOM pozostaje niepodłączony (nie ma cewek indukcyjnych).\n\n--- MCP23017 (U9) ---\nAdres I²C: 0x20 (A0-A2 niepodłączone)\nZasilanie 3.3V\nSDA = pin 9, SCL = pin 8\nPort A - sterowanie miernikami (CTRL_Mx_BL, CTRL_Mx_URAL)\nPort B - obsługa przycisków (BTN_*_SIG) oraz LED-ów sterujących bramą, furtką itd.\nC27 = 0.1 µF (filtracja zasilania lokalna)\nINTA/INTB nieużywane - odczyt przez I²C pooling.\n\n--- Zasilanie ---\n+3.3V - logika (MCP23017)\n+5V - LED (paski WS2812)\n+12V - kontrolki i lampki\nGND i GNDPWR połączone w jednym punkcie wspólnym (separacja prądów LED i logiki)\n\n--- Opis działania ---\nRaspberry Pi komunikuje się po magistrali I²C z MCP23017 (U9),\nktóry odpowiada za odczyt stanów przycisków i sterowanie wskaźnikami analogowymi.\nWyjścia z MCP23017 przez ULN2803A sterują diodami LED i prądami cewki mierników.\nSygnały danych LED (3.3V) są buforowane do poziomu 5V przez układy 74AHCT125,\npo czym trafiają do taśm LED w miernikach MTR1-MTR5.\nCała sekcja korzysta z trzech niezależnych zasilaczy: 3.3V (logika), 5V (LED), 12V (lampki)."
 		(exclude_from_sim no)
@@ -3866,12 +3765,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "5a47607d-cbda-4261-8b41-ec9a18c00950")
-	)
-	(junction
-		(at 130.81 144.78)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "5b497eae-132b-4ce5-b241-151c887e8da7")
 	)
 	(junction
 		(at 257.81 162.56)
@@ -5458,16 +5351,6 @@
 			(type default)
 		)
 		(uuid "f3dfe6b2-df39-4b66-bab8-ebdb4634024d")
-	)
-	(wire
-		(pts
-			(xy 130.81 144.78) (xy 134.62 144.78)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f4020bda-53fd-4671-a325-4220c867f3dc")
 	)
 	(wire
 		(pts
@@ -7954,72 +7837,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:PWR_FLAG")
-		(at 134.62 144.78 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "5fabf9a0-ee18-43e3-b403-e836b5664ca8")
-		(property "Reference" "#FLG05"
-			(at 134.62 146.685 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "PWR_FLAG"
-			(at 134.62 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 134.62 144.78 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 134.62 144.78 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 134.62 144.78 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "c7ce072f-53cf-44e7-8b83-c2c42813c994")
-		)
-		(instances
-			(project "powerplant"
-				(path "/466a31f8-107b-4c4c-9290-aff37fe81c1e/db7adffd-aa7d-4a46-a5c7-199e9f0c5b1e"
-					(reference "#FLG05")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "74xx:74AHCT125")
 		(at 226.06 64.77 180)
 		(unit 2)
@@ -8782,7 +8599,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Disc_D3.0mm_W1.6mm_P2.50mm"
+		(property "Footprint" "Capacitor_THT:CP_Radial_D5.0mm_P2.50mm"
 			(at 126.0348 121.92 0)
 			(effects
 				(font

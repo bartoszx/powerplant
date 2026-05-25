@@ -1,0 +1,7 @@
+# PowerPanel – zależności
+# Na RPi: pip install rpi_ws281x  # test_meter_leds.py
+# Na RPi: pip install smbus2      # test_backlight.py (I2C)
+# Do test_mtr1_via_pico.py (UART do Pico 2):
+pyserial>=3.5
+pyyaml>=6.0
+smbus2>=1.2

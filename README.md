@@ -247,6 +247,9 @@ Stanowi pomost między cyfrowym systemem automatyki a fizycznym światem.
 
 ## 9. Pliki schematów i PCB
 
+**Źródło prawdy (source of truth)** dla hardware'u: **`hardware/pcb/powerplant.kicad_sch`**.  
+Ten plik może się aktualizować; dokumentacja, konfiguracja i kod powinny być z nim zsynchronizowane.
+
 Pliki KiCad znajdują się w katalogu `hardware/pcb`:
 
 - Główne pliki projektu: `hardware/pcb/powerplant.kicad_sch`, `hardware/pcb/powerplant.kicad_pcb`
