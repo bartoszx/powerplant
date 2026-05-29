@@ -1,0 +1,313 @@
+{
+    "$schema": "https://schemas.kicad.org/drc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-05-25T22:38:27",
+    "ignored_checks": [
+        {
+            "description": "Footprint has no courtyard defined",
+            "key": "missing_courtyard"
+        },
+        {
+            "description": "Track endpoint not centered on via",
+            "key": "track_not_centered_on_via"
+        },
+        {
+            "description": "Tuning profile track geometries",
+            "key": "tuning_profile_track_geometries"
+        },
+        {
+            "description": "Footprint doesn't match symbol's footprint filters",
+            "key": "footprint_filters_mismatch"
+        },
+        {
+            "description": "Footprint component type doesn't match footprint pads",
+            "key": "footprint_type_mismatch"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.3",
+    "schematic_parity": [],
+    "source": "modul-miernikow-tp.kicad_pcb",
+    "unconnected_items": [],
+    "violations": [
+        {
+            "description": "Clearance violation ( clearance 0.2000 mm; actual 0.1500 mm)",
+            "items": [
+                {
+                    "description": "Track [/SENSE_E2] on B.Cu, length 5.9500 mm",
+                    "pos": {
+                        "x": 148.35,
+                        "y": 105.0
+                    },
+                    "uuid": "10a43f5c-f937-4da1-981d-35dd27f0e5cb"
+                },
+                {
+                    "description": "Via [/SENSE_E1] on F.Cu - B.Cu",
+                    "pos": {
+                        "x": 147.8,
+                        "y": 106.0
+                    },
+                    "uuid": "154390db-1166-4093-a5a6-25df9640d8e4"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "Tracks crossing",
+            "items": [
+                {
+                    "description": "Track [/VIN_FILT_C] on B.Cu, length 8.6000 mm",
+                    "pos": {
+                        "x": 56.1,
+                        "y": 93.4
+                    },
+                    "uuid": "080a013e-db34-4b71-8ad8-668c44f8ae4d"
+                },
+                {
+                    "description": "Track [/VIN_FILT_D] on B.Cu, length 25.2543 mm",
+                    "pos": {
+                        "x": 53.9744,
+                        "y": 70.4457
+                    },
+                    "uuid": "6dff8bdf-44d5-4fa2-affe-b07a07ab5cb4"
+                }
+            ],
+            "severity": "error",
+            "type": "tracks_crossing"
+        },
+        {
+            "description": "Clearance violation ( clearance 0.2500 mm; actual 0.0988 mm)",
+            "items": [
+                {
+                    "description": "Via [+5V] on F.Cu - B.Cu",
+                    "pos": {
+                        "x": 62.071,
+                        "y": 102.4755
+                    },
+                    "uuid": "49a1cad6-134c-4239-8579-9b43eb6cc14b"
+                },
+                {
+                    "description": "Track [/VIN_FILT_A] on B.Cu, length 9.5257 mm",
+                    "pos": {
+                        "x": 60.624265,
+                        "y": 102.974265
+                    },
+                    "uuid": "fbca6fb8-7a82-4221-ba1e-7788133f6ab9"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "Clearance violation ( clearance 0.2500 mm; actual 0.0399 mm)",
+            "items": [
+                {
+                    "description": "Track [+5V] on B.Cu, length 0.5799 mm",
+                    "pos": {
+                        "x": 49.60595,
+                        "y": 113.3094
+                    },
+                    "uuid": "7871e158-9277-4d3a-b0c7-ecad462a8c08"
+                },
+                {
+                    "description": "Track [/VIN_FILT_B] on B.Cu, length 5.4459 mm",
+                    "pos": {
+                        "x": 49.8959,
+                        "y": 112.6094
+                    },
+                    "uuid": "b84e757d-4eeb-409c-ad65-e9862f842616"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "Tracks crossing",
+            "items": [
+                {
+                    "description": "Track [+5V] on B.Cu, length 5.8453 mm",
+                    "pos": {
+                        "x": 49.1959,
+                        "y": 112.89935
+                    },
+                    "uuid": "a3cb6e26-1763-4711-8647-7936dfde3e22"
+                },
+                {
+                    "description": "Track [/VIN_FILT_B] on B.Cu, length 5.4459 mm",
+                    "pos": {
+                        "x": 49.8959,
+                        "y": 112.6094
+                    },
+                    "uuid": "b84e757d-4eeb-409c-ad65-e9862f842616"
+                }
+            ],
+            "severity": "error",
+            "type": "tracks_crossing"
+        },
+        {
+            "description": "Tracks crossing",
+            "items": [
+                {
+                    "description": "Track [+5V] on B.Cu, length 9.9549 mm",
+                    "pos": {
+                        "x": 69.1102,
+                        "y": 109.5147
+                    },
+                    "uuid": "aaf46e8f-e014-4903-ad97-bab0fcb3484a"
+                },
+                {
+                    "description": "Track [/VIN_FILT_A] on B.Cu, length 9.5257 mm",
+                    "pos": {
+                        "x": 60.624265,
+                        "y": 102.974265
+                    },
+                    "uuid": "fbca6fb8-7a82-4221-ba1e-7788133f6ab9"
+                }
+            ],
+            "severity": "error",
+            "type": "tracks_crossing"
+        },
+        {
+            "description": "Tracks crossing",
+            "items": [
+                {
+                    "description": "Track [/SENSE_E2] on B.Cu, length 19.2150 mm",
+                    "pos": {
+                        "x": 129.134999,
+                        "y": 105.0
+                    },
+                    "uuid": "5b46eaf2-431a-422b-9d80-ea3e306a2b58"
+                },
+                {
+                    "description": "Track [/MTR_KWH_5] on B.Cu, length 34.6090 mm",
+                    "pos": {
+                        "x": 138.6664,
+                        "y": 72.3156
+                    },
+                    "uuid": "7ee6ac9e-fd12-442f-b7b2-da1372ff6d48"
+                }
+            ],
+            "severity": "error",
+            "type": "tracks_crossing"
+        },
+        {
+            "description": "Tracks crossing",
+            "items": [
+                {
+                    "description": "Track [/SENSE_E2] on B.Cu, length 19.2150 mm",
+                    "pos": {
+                        "x": 129.134999,
+                        "y": 105.0
+                    },
+                    "uuid": "5b46eaf2-431a-422b-9d80-ea3e306a2b58"
+                },
+                {
+                    "description": "Track [/J_METER_PLUS_MINUS+] on B.Cu, length 39.4347 mm",
+                    "pos": {
+                        "x": 139.5042,
+                        "y": 112.0162
+                    },
+                    "uuid": "95dd904b-877d-4a23-ae41-4822a09a7510"
+                }
+            ],
+            "severity": "error",
+            "type": "tracks_crossing"
+        },
+        {
+            "description": "Clearance violation ( clearance 0.2000 mm; actual 0.0683 mm)",
+            "items": [
+                {
+                    "description": "Via [/VIN_FILT_E2] on F.Cu - B.Cu",
+                    "pos": {
+                        "x": 47.5177,
+                        "y": 105.7955
+                    },
+                    "uuid": "1d66340d-1575-44e0-abf9-a87ee6b0752b"
+                },
+                {
+                    "description": "Pad 2 [Net-(C19-Pad2)] of R22 on F.Cu",
+                    "pos": {
+                        "x": 48.55,
+                        "y": 105.2375
+                    },
+                    "uuid": "cf9b8956-7fea-407c-8453-7786484fb72a"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "Clearance violation ( clearance 0.2000 mm; actual 0.0774 mm)",
+            "items": [
+                {
+                    "description": "Via [/SENSE_E2] on F.Cu - B.Cu",
+                    "pos": {
+                        "x": 129.134999,
+                        "y": 111.7256
+                    },
+                    "uuid": "228545f6-b193-4901-986d-f7c47b4dcbc3"
+                },
+                {
+                    "description": "Pad 5 [/VIN_FILT_E2] of U10 on F.Cu",
+                    "pos": {
+                        "x": 127.8,
+                        "y": 112.01
+                    },
+                    "uuid": "d35bbf48-71e2-4a48-97da-5eaa6faacedf"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2274 mm)",
+            "items": [
+                {
+                    "description": "Pad 5 [/VIN_FILT_E2] of U10 on F.Cu",
+                    "pos": {
+                        "x": 127.8,
+                        "y": 112.01
+                    },
+                    "uuid": "d35bbf48-71e2-4a48-97da-5eaa6faacedf"
+                },
+                {
+                    "description": "Via [/SENSE_E2] on F.Cu - B.Cu",
+                    "pos": {
+                        "x": 129.134999,
+                        "y": 111.7256
+                    },
+                    "uuid": "228545f6-b193-4901-986d-f7c47b4dcbc3"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        },
+        {
+            "description": "Hole clearance violation (board setup constraints hole clearance 0.2500 mm; actual 0.2183 mm)",
+            "items": [
+                {
+                    "description": "Pad 2 [Net-(C19-Pad2)] of R22 on F.Cu",
+                    "pos": {
+                        "x": 48.55,
+                        "y": 105.2375
+                    },
+                    "uuid": "cf9b8956-7fea-407c-8453-7786484fb72a"
+                },
+                {
+                    "description": "Via [/VIN_FILT_E2] on F.Cu - B.Cu",
+                    "pos": {
+                        "x": 47.5177,
+                        "y": 105.7955
+                    },
+                    "uuid": "1d66340d-1575-44e0-abf9-a87ee6b0752b"
+                }
+            ],
+            "severity": "error",
+            "type": "hole_clearance"
+        }
+    ]
+}

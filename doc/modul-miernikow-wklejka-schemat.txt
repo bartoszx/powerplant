@@ -1,0 +1,90 @@
+MODUL STEROWANIA MIERNIKAMI (5 szt.) — opis schematu
+====================================================
+Projekt: modul-miernikow.kicad_sch / .kicad_pro
+Dokumentacja (git): powerplant/doc/modul-miernikow-opis-schematu.md
+KiCad (Dropbox): ~/Dropbox/kicad/powerplant/
+Weryfikacja: KiCAD MCP Server (netlista + ERC/DRC), patrz doc/README.md
+
+ROLA MODULU
+-----------
+Jedna plytka: sterowanie WSZYSTKICH miernikow + sygnaly do sekcji LED w kazdym
+mierniku. Komunikacja z plyta glowna (RPi5, Pico, buck). Wyjscie terenowe na
+mierniki: zlacze IDC-34 (J1). Zasilanie i logika od plyty glownej: J18 EDGE 2x12.
+
+NIE dotyczy: URAL, GNDPWR, MCP4728, 2N2222 (stary opis — usuniety).
+
+ZLACZA
+------
+J18 "EDGE" (2x12)  -> plyta glowna: +5V, +12V, GND, I2C (DAC), GPIO (LED)
+J1  IDC-34 (2x17)  -> mierniki 1..5: cewka, 3x LED DATA, +5V/GND szyna
+
+UKLADY GLOWNE
+-------------
+U16  DAC7578xPW     — 8-kan. DAC, I2C z J18, 6 kanalow uzywanych
+U2,U3,U10 LM358    — po 2 tory wzmacniacza (sterowanie cewek)
+Q7..Q12 AO3400A    — N-MOS low-side, prad cewki
+U1,U4,U5,U6,U7    — 74AHCT125 (5 szt.), bufor LED, VCC=5V
+R76..R90           — 68 ohm, MTR_* -> J1
+
+ZASILANIE
+---------
++5V  — logika (DAC, 74AHCT), J18 piny 1-2, J1 piny 27,29,31,33
++12V — tor analogowy / cewki, J18 pin 5 (buck na plycie glownej), NIE na J1
+GND  — wspolna masa, J18 + J1 (wiele pinow)
+
+TOR WSKAZOWKI (wspolny wzorzec)
+-------------------------------
+DAC7578 -> R 10k -> VIN_FILT_x -> (+) LM358
+         -> 4,7 uF + 100 nF -> GND (filtr DAC)
+LM358 (-) <- SENSE_x <- AO3400 source + C ~680pF (sprzezenie)
+LM358 wyj -> R 100 ohm -> bramka AO3400, Rpd 100k do GND
++12V -> Rlimit -> J1 "+" cewki; zwrot -> AO3400 drain -> J1
+
+MAPOWANIE DAC7578 (U16) -> MIERNIK
+----------------------------------
+VOUTA (pin 4)  -> VIN_FILT_A -> CH A -> J1: 1 (+), 2 (-)     25 uA, jednostronny
+VOUTB (pin 13) -> VIN_FILT_B -> CH B -> J1: 3 (+), 4 (-)     5 mA
+VOUTC (pin 5)  -> VIN_FILT_C -> CH C -> J1: 5 (+), 6 (-)     1 A
+VOUTD (pin 12) -> VIN_FILT_D -> CH D -> J1: 7 (+), 8 (-)     TBC
+VOUTE (pin 6)  -> VIN_FILT_E1 -> ML    -> J1: 9 (ML+), Q11
+VOUTF (pin 11) -> VIN_FILT_E2 -> MR    -> J1: 10 (MR), Q12
+VOUTG, VOUTH   — NC (rezerwa)
+LDAC -> GND (natychmiastowa aktualizacja wyjsc DAC)
+ADDR0 -> GND (adres I2C)
+
+4 mierniki jednostronne (wskazowka od spoczynku w jedna strone): A,B,C,D
+1 miernik dwukierunkowy (srodek = 0): ML + MR, dwa kanaly DAC (E1 + E2)
+  ML = Miernik Left  (J1 pin 9, etykieta tez J_METER_PLUS_MINUS+ na fragm.)
+  MR = Miernik Right (J1 pin 10, siec /MR)
+  R29, R30 = 10 ohm do +12V (inna skala niz Rlimit 100k na A-D)
+
+LED (kazdy miernik 1..5)
+------------------------
+Pico GPIO (J18) -> 74AHCT wejscie -> wyjscie -> 68 ohm -> J1 MTR_*
+Na J1 na kazdy miernik:
+  MTR_LIGHT_x  — DATA_LIGHT
+  MTR_SCALE_x  — DATA_SCALE
+  MTR_KWH_x    — DATA_MODE (dawniej KWH w nazwie)
+J1 piny 11-25 (LIGHT/SCALE/KWH x5), +5V/GND 26-34 dla LED w miernikach
+OE bufora 1 (pin 1) -> +5V wylaczony; OE 2-4 -> GND wlaczone; wejscia 2-3 NC
+
+J1 IDC-34 — skrot pinow (funkcja)
+---------------------------------
+ 1  J_METER_25uA+     11 MTR_LIGHT_1    21 MTR_SCALE_4    27 +5V
+ 2  METER- (zwrot A)  12 MTR_SCALE_1    22 MTR_KWH_4      28 GND
+ 3  J_METER_5mA+      13 MTR_KWH_1      23 MTR_LIGHT_5    29 +5V
+ 4  zwrot B           14 MTR_LIGHT_2    24 MTR_SCALE_5    30 GND
+ 5  J_METER_1A+       15 MTR_SCALE_2    25 MTR_KWH_5      31 +5V
+ 6  zwrot C           16 MTR_KWH_2                         32 GND
+ 7  J_METER_TBC+      17 MTR_LIGHT_3                         33 +5V
+ 8  zwrot D           18 MTR_SCALE_3                         34 GND
+ 9  ML (+)            19 MTR_KWH_3
+10  MR (-)            20 MTR_LIGHT_4
+
+UWAGI KONSTRUKCYJNE
+-------------------
+- RSENSE na kanalach A-D: duze wartosci (140k..500k) — kalibracja empiryczna
+- RSENSE E1/E2: 820 ohm — lepszy zwrot dla ML/MR
+- Nazwy sieci: ujednolicic ML (zamiast mieszac z J_METER_PLUS_MINUS+)
+- PCB: DRC 0 (stan weryfikacji MCP); bring-up na stole po wytrawieniu
+- Test points (TP): planowane na rewizji PCB — patrz doc/modul-miernikow-opis-schematu.md

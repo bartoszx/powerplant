@@ -261,3 +261,8 @@ Pliki KiCad znajdują się w katalogu `hardware/pcb`:
   - `hardware/pcb/BLK_SWITCHES.kicad_sch`
 
 Pełne drzewo plików sprzętowych: `hardware/pcb/`.
+
+**Moduł sterowania miernikami** (osobny projekt KiCad, pliki w Dropbox: `kicad/powerplant/modul-miernikow.*`):
+
+- Opis schematu (weryfikacja MCP): [`doc/modul-miernikow-opis-schematu.md`](doc/modul-miernikow-opis-schematu.md)
+- Wklejka na schemat KiCad: [`doc/modul-miernikow-wklejka-schemat.txt`](doc/modul-miernikow-wklejka-schemat.txt)
